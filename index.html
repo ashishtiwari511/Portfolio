@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .auth-section { display: flex; gap: 10px; }
+        .btn-auth { padding: 8px 16px; border: 1px solid #3b82f6; background: transparent; color: #3b82f6; cursor: pointer; border-radius: 4px; }
+        .btn-auth:hover { background: #3b82f6; color: white; }
+        .user-profile { position: relative; }
+        .profile-btn { padding: 8px 16px; background: #3b82f6; color: white; border: none; cursor: pointer; border-radius: 4px; }
+        .dropdown-menu { position: absolute; top: 100%; right: 0; background: white; border: 1px solid #ddd; border-radius: 4px; min-width: 120px; display: none; z-index: 1000; }
+        .dropdown-menu a { display: block; padding: 10px; text-decoration: none; color: #333; border-bottom: 1px solid #eee; }
+        .dropdown-menu a:hover { background: #f5f5f5; }
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
+        .modal-content { background: white; margin: 15% auto; padding: 20px; border-radius: 8px; width: 300px; position: relative; }
+        .close { position: absolute; right: 10px; top: 10px; font-size: 24px; cursor: pointer; }
+        .modal form { display: flex; flex-direction: column; gap: 15px; }
+        .modal input { padding: 10px; border: 1px solid #ddd; border-radius: 4px; }
+        .modal button { padding: 10px; background: #3b82f6; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        .profile-info { display: flex; flex-direction: column; gap: 10px; }
+    </style>
+    <script>
+        function showLogin() { document.getElementById('loginModal').style.display = 'block'; }
+        function showRegister() { document.getElementById('registerModal').style.display = 'block'; }
+        function showProfile() { document.getElementById('profileModal').style.display = 'block'; }
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+        function toggleDropdown() { 
+            const menu = document.getElementById('dropdownMenu');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }
+        function login(e) {
+            e.preventDefault();
+            document.getElementById('authSection').style.display = 'none';
+            document.getElementById('userProfile').style.display = 'block';
+            closeModal('loginModal');
+        }
+        function register(e) {
+            e.preventDefault();
+            document.getElementById('authSection').style.display = 'none';
+            document.getElementById('userProfile').style.display = 'block';
+            closeModal('registerModal');
+        }
+        function logout() {
+            document.getElementById('authSection').style.display = 'flex';
+            document.getElementById('userProfile').style.display = 'none';
+            document.getElementById('dropdownMenu').style.display = 'none';
+        }
+        function editProfile() { alert('Edit profile functionality would be implemented here'); }
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <h1>Portfolio</h1>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="auth-section" id="authSection">
+                <button class="btn-auth" onclick="showLogin()">Login</button>
+                <button class="btn-auth" onclick="showRegister()">Sign Up</button>
+            </div>
+            <div class="user-profile" id="userProfile" style="display:none;">
+                <div class="profile-dropdown">
+                    <button class="profile-btn" onclick="toggleDropdown()">
+                        <span id="userName">User</span> ▼
+                    </button>
+                    <div class="dropdown-menu" id="dropdownMenu">
+                        <a href="#" onclick="showProfile()">Profile</a>
+                        <a href="#" onclick="logout()">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Hi, I'm <span class="name-highlight">Ashish tiwari</span></h1>
+            <p class="subtitle">Full Stack Developer & UI/UX Designer</p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn primary">View My Work</a>
+                <a href="#contact" class="btn secondary">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="profile-content">
+                <div class="profile-summary">
+                    <h3>Professional Summary</h3>
+                    <p>Passionate full-stack developer with 1 years of experience creating modern web applications. I specialize in React, Node.js, and cloud technologies.</p>
+                </div>
+                <div class="skills">
+                    <h4>Skills</h4>
+                    <ul class="skills-list">
+                        <li>JavaScript</li>
+                        <li>React</li>
+                        <li>Node.js</li>
+                        <li>MongoDB</li>
+                        <li>CSS3</li>
+                    </ul>
+                </div>
+                <div class="experience">
+                    <h4>Experience</h4>
+                    <p>1 years in web development, working with modern frameworks and technologies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <h2>My Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>Project 1</h3>
+                    <p>E-Commerce Website - A full-stack e-commerce platform with user authentication, payment integration, and admin dashboard.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">MongoDB</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-btn btn-demo">Live Demo</a>
+                        <a href="#" class="project-btn btn-code">View Code</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3>Project 2</h3>
+                    <p>Task Management App - A collaborative task management application with real-time updates and team collaboration features.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Vue.js</span>
+                        <span class="tech-tag">Firebase</span>
+                        <span class="tech-tag">Socket.io</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-btn btn-demo">Live Demo</a>
+                        <a href="#" class="project-btn btn-code">View Code</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <p>Let's work together on your next project</p>
+             <p>at145283@gmail.com</p>
+             <a href="www.linkedin.com/in/ashish-tiwari-292978294"></a>
+             
+
+
+            <p>Phone:+91 7549228511</p>
+            <div class="social-links">
+                <a href="#" class="social-icon">LinkedIn</a>
+                <br>
+                <a href="#" class="social-icon">GitHub</a>
+                <br>
+                <a href="#" class="social-icon">Twitter</a>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+
+        <h2>Login</h2>
+
+        <form>
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</div>
+
+
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('registerModal')">&times;</span>
+            <h2>Sign Up</h2>
+            <form onsubmit="register(event)">
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Open Profile Button -->
+<a href="#profileModal" class="open-btn">View Profile</a>
+
+<!-- Profile Modal -->
+<div class="modal" id="profileModal">
+    <div class="modal-content">
+        <a href="#" class="close">&times;</a>
+
+        <h2>Profile</h2>
+
+        <div class="profile-info">
+            <p><strong>Name:</strong> Ashish Tiwari</p>
+            <p><strong>Email:</strong> at145283@gmail.com</p>
+            <a href="#editProfile" class="edit-btn">Edit Profile</a>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Ashish Tiwari. All rights reserved.</p>
+    </footer>
+</body>
+</html>
